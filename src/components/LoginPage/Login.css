@@ -1,0 +1,16 @@
+.button-color {
+    background-color: #00838f;
+    color: white;
+}
+
+.col-align {
+    align-content: center !important;
+    justify-content: center !important;
+    align-items: center;
+    display: flex;
+}
+
+.ajuste {
+    height: 100px;
+    width: 100%;
+}

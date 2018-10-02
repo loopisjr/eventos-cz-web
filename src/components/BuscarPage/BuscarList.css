@@ -1,0 +1,26 @@
+.buttonEx {
+    background-color: #bf1515;
+    color: white;
+    float: right;
+    margin-left: 3px;
+}
+
+.buttonEd {
+    background-color: #f3ae09;
+    color: white;
+    float: right;
+    margin-left: 3px;
+}
+
+.linha {
+    padding-top: 30px;
+}
+
+.linha-li {
+    padding-top: 10px;
+}
+
+.linha li {
+    /*display: inline-block;*/
+    overflow: auto;
+}

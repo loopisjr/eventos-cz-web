@@ -1,0 +1,25 @@
+div.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.grid-item-header {
+    text-align: center;
+}
+
+.navbar-brand {
+    color:white !important;
+    float: none;
+    padding: 15px 15px;
+    font-size: 18px;
+    line-height: 20px;
+}
+
+.navbar-default {
+    background-color: #00838f;
+}
+
+.nav-color a {
+    text-decoration: none;
+    color:white !important;
+}
