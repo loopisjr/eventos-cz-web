@@ -12,6 +12,7 @@ import { withRouter } from 'react-router-dom'
 import { EDITAR_PAGE } from '../Routes/constants'
 
 import './BuscarList.css'
+import swal from 'sweetalert';
 
 class BuscarList extends Component {
     constructor(props) {
@@ -30,11 +31,17 @@ class BuscarList extends Component {
         let desertRef = Storage.child('eventos/' + hash);
 
         // Delete the file
-        desertRef.delete()
+        desertRef.delete().then(function() {
+            let databaseRef = FirebaseDB.ref().child('eventos/'+ key)
 
-        let databaseRef = FirebaseDB.ref().child('eventos/'+ key)
-
-        databaseRef.remove()
+            databaseRef.remove().then(function() {
+                swal("Excluir", "feito com sucesso!", "success");
+            }).catch(function() {
+                swal("Excluir", "Error ao excluir os dados!", "error");
+            })
+        }).catch(function() {
+            swal("Excluir", "Error ao excluir a foto!", "error");
+        })
 
     }
 

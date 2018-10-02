@@ -31,7 +31,7 @@ class BuscarForm extends Component {
             this.props.editarLista(lista)
         }else {
             for (let array in lista) {
-                if(lista[array].nome.indexOf(this.state.nome) !== -1){
+                if(lista[array].nome.toUpperCase().indexOf(this.state.nome.toUpperCase()) !== -1){
                     aux[array] = lista[array]
                 }
             }

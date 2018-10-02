@@ -6,8 +6,7 @@ import { FirebaseAuth } from '../../firebase'
 
 import swal from 'sweetalert';
 
-import { withRouter } from 'react-router-dom'
-import { BUSCAR_PAGE } from '../Routes/constants'
+import { withAuthorizationLogin } from '../HigherOrder'
 
 class LoginPage extends Component {
     constructor(props) {
@@ -24,18 +23,15 @@ class LoginPage extends Component {
     handleSubmit(e){
         e.preventDefault();
 
-        const self = this
-
         const email = this.state.email
         const password = this.state.senha
 
-        FirebaseAuth.signInWithEmailAndPassword(email, password).then(function() {
-            swal("Login", "feito com sucesso!", "success");
-            self.props.history.push(BUSCAR_PAGE)
-        }).catch(function(error) {
-            console.log(error)
-            swal("Login","Erro a Logar!", "error");
-        })
+        FirebaseAuth.signInWithEmailAndPassword(email, password)
+            .then(success => {
+                swal("Login", "feito com sucesso!", "success");
+            }).catch(error => {
+                swal("Login","Erro a Logar!", "error");
+            })
     }
 
     render() {
@@ -78,4 +74,4 @@ class LoginPage extends Component {
     }
 } 
 
-export default withRouter(LoginPage)
+export default withAuthorizationLogin(LoginPage)

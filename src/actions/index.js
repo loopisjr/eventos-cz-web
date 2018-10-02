@@ -1,11 +1,20 @@
 import { eventosRef, Storage, FirebaseDB } from '../firebase'
 import { LISTAR_EVENTOS, TOGGLE_CADASTRAR_MODAL, SALVAR_EVENTO_EDITAR, TOGGLE_EDITAR_MODAL, EDITAR_LISTA_2 } from './types';
 
+import swal from 'sweetalert';
+
 export const adicionarEvento = (evento, foto) => {
     return async () => {
-        eventosRef.push().set(evento)
-        let Foto = Storage.child('eventos/' + evento.hash);
-        Foto.put(foto)
+        eventosRef.push().set(evento).then(function() {
+            let Foto = Storage.child('eventos/' + evento.hash);
+            Foto.put(foto).then(function() {
+                swal("Cadastro", "feito com sucesso!", "success");
+            }).catch(function() {
+                swal("Cadastro", "Error ao salvar a foto!", "error");
+            })
+        }).catch(function() {
+            swal("Cadastro", "Error ao salvar os dados!", "error");
+        })
     }
 }
 
