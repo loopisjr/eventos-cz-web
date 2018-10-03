@@ -51,7 +51,7 @@ class EditarModalForm extends Component {
       componentWillMount() {
 
         const self = this
-
+        console.log(this.props.evento.hash)
         Storage.child('eventos/'+ this.props.evento.hash).getDownloadURL().then(function(url) {
 
           const foto = url
@@ -70,6 +70,8 @@ class EditarModalForm extends Component {
           })
 
         })
+
+        console.log(this.state)
       }
 
       handleSubmit(e) {

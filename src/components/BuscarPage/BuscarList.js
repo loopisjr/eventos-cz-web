@@ -4,15 +4,13 @@ import { Row , ListGroup , Col , Button} from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 
-import { listarEventos , salvarEvento} from '../../actions'
+import { listarEventos , salvarEvento , excluirEvento } from '../../actions'
 import _ from 'lodash'
 
-import { FirebaseDB , Storage} from '../../firebase'
 import { withRouter } from 'react-router-dom'
 import { EDITAR_PAGE } from '../Routes/constants'
 
 import './BuscarList.css'
-import swal from 'sweetalert';
 
 class BuscarList extends Component {
     constructor(props) {
@@ -28,20 +26,7 @@ class BuscarList extends Component {
 
     handleSubmitEx(key , hash){
 
-        let desertRef = Storage.child('eventos/' + hash);
-
-        // Delete the file
-        desertRef.delete().then(function() {
-            let databaseRef = FirebaseDB.ref().child('eventos/'+ key)
-
-            databaseRef.remove().then(function() {
-                swal("Excluir", "feito com sucesso!", "success");
-            }).catch(function() {
-                swal("Excluir", "Error ao excluir os dados!", "error");
-            })
-        }).catch(function() {
-            swal("Excluir", "Error ao excluir a foto!", "error");
-        })
+        this.props.excluirEvento(key, hash)
 
     }
 
@@ -78,6 +63,6 @@ class BuscarList extends Component {
 
 const mapStateToProps = state => ({ lista: state.eventos.lista2 })
 
-const mapDisptchToProps = dispatch => bindActionCreators({ listarEventos , salvarEvento }, dispatch)
+const mapDisptchToProps = dispatch => bindActionCreators({ listarEventos , salvarEvento , excluirEvento }, dispatch)
 
 export default connect(mapStateToProps, mapDisptchToProps)(withRouter(BuscarList))

@@ -12,6 +12,7 @@ import { BUSCAR_PAGE } from '../Routes/constants'
 import { withAuthorization } from '../HigherOrder'
 
 import '../CadastrarPage/CadastrarPage.css';
+import { withRouter } from 'react-router-dom'
 
 class EditarPage extends Component {
 	constructor(props) {
@@ -94,4 +95,4 @@ const mapStateToProps = state => ({ evento: state.evento })
 
 const mapDispatchToProps = dispatch => bindActionCreators({ toggleEditarModal }, dispatch)
 
-export default withAuthorization(connect(mapStateToProps, mapDispatchToProps)(EditarPage))
+export default withAuthorization(connect(mapStateToProps, mapDispatchToProps)(withRouter(EditarPage)))

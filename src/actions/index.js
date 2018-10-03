@@ -28,6 +28,38 @@ export const editarEvento = (evento, foto, key) => {
     }
 }
 
+export const excluirEvento = (key , hash) => {
+    return async () => {
+        
+        let desertRef = Storage.child('eventos/' + hash);
+
+        swal({
+            title: "Você tem certeza?",
+            text: "Uma vez deletado, você não poderá recuperar este evento!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                desertRef.delete().then(function() {
+                    let databaseRef = FirebaseDB.ref().child('eventos/'+ key)
+        
+                    databaseRef.remove().then(function() {
+                        swal("Excluir feito com sucesso!", { icon: "success" });
+                    }).catch(function() {
+                        swal("Excluir", "Error ao excluir os dados!", "error");
+                    })
+                }).catch(function() {
+                    swal("Excluir", "Error ao excluir a foto!", "error");
+                })
+            } else {
+                swal("Seu evento está seguro!");
+            }
+        })
+    }
+}
+
 export const listarEventos = () => {
     return dispatch => {
         eventosRef.on('value', snapshot => {
