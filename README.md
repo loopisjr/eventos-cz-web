@@ -12,13 +12,18 @@ Aplicação desenvolvida pela empresa Loopis Jr. do IFPB campus Cajazeiras
 * Firebase (Auth, Realtime Database, Storage e Hosting)
 * SweetAlert
 
-OBS.: Antes de tudo, é necessário ter o Node.js e NPM instalado na aplicação
+OBS.: Antes de tudo, é necessário ter o Node.js e NPM instalado
 
 # Como rodar a aplicação
 
 1: Clone o repositório e acesse a pasta
 
-2: Rode a aplicação em seu ambiente
+2: Instale as dependências
+```
+npm i
+```
+
+3: Rode a aplicação em seu ambiente
 ```
 npm start
 ```
